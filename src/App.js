@@ -1,19 +1,27 @@
 import './App.css';
-import {User} from './User'
+import { useState } from 'react'
 
 
 function App() {
-  const users = [
-    {'name' : 'Sukhman' , 'age' : 20},
-    {'name' : 'Aseem' , 'age' : 27},
-    {'name' : 'Kartikey', 'age' : 24}
-  ];
+  const [age, setAge] = useState(0);
+  const [inputValue, setInputValue] = useState('');
+
+  const increaseAge = () => {
+    setAge(age+1);
+  }
+
+  //every onChange function has a default property event
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  }
+
   return (
-    <div className="App">
-      {users.map((user,key) => {
-        return <User name = {user.name} age = {user.age}/>
-      })}
-    </div>
+  <div className='App'>
+    {age}
+    <button onClick={increaseAge}>Increase Age</button>
+    <input type='text' onChange={handleInputChange}/>
+    {inputValue}
+  </div>
   )
 }
 
