@@ -5,6 +5,7 @@ import { useState } from 'react'
 function App() {
   const [age, setAge] = useState(0);
   const [inputValue, setInputValue] = useState('');
+  const [showText, setShowText] = useState(true);
 
   const increaseAge = () => {
     setAge(age+1);
@@ -21,6 +22,11 @@ function App() {
     <button onClick={increaseAge}>Increase Age</button>
     <input type='text' onChange={handleInputChange}/>
     {inputValue}
+    <button onClick={()=>{
+      setShowText(!showText);
+      console.log(showText);
+    }}>Show/Hide</button>
+    {showText===true && <h1>Lorem Ipsum</h1>}
   </div>
   )
 }
