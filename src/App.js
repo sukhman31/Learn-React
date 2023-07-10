@@ -1,34 +1,45 @@
 import './App.css';
-import { useState } from 'react'
+import { useState } from 'react';
+import Axios from 'axios';
 
+function App(){ 
+  const [toDoList, setToDoList] = useState([]);
+  const [newTask, setNewTask] = useState('');
+  
+  const handleChange = (event) => {
+    setNewTask(event.target.value);
+  };
 
-function App() {
-  const [age, setAge] = useState(0);
-  const [inputValue, setInputValue] = useState('');
-  const [showText, setShowText] = useState(true);
-
-  const increaseAge = () => {
-    setAge(age+1);
+  const addTask = () => {
+    const task = {
+      id : toDoList.length===0 ? 1 : toDoList[toDoList.length-1].id+1,
+      taskName: newTask
+    }
+    setToDoList([...toDoList, task]);
   }
 
-  //every onChange function has a default property event
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+  const deleteTask = (id) => {
+    setToDoList(toDoList.filter((task)=>{
+      return task.id !== id;
+    }))
   }
-
+  
   return (
   <div className='App'>
-    {age}
-    <button onClick={increaseAge}>Increase Age</button>
-    <input type='text' onChange={handleInputChange}/>
-    {inputValue}
-    <button onClick={()=>{
-      setShowText(!showText);
-      console.log(showText);
-    }}>Show/Hide</button>
-    {showText===true && <h1>Lorem Ipsum</h1>}
+    <div className="addTask">
+      <input onChange={handleChange}/>
+      <button onClick={addTask}>Add Task</button>
+    </div>
+    <div className="list">{toDoList.map((task)=>{
+      return (
+      <div>
+        <h1>{task.taskName}</h1>
+        <button onClick={() => deleteTask(task.id)}>X</button>
+      </div>
+      )
+    })}</div>
   </div>
-  )
+  );
 }
 
 export default App;
