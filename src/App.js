@@ -25,7 +25,7 @@ function App(){
   }
   
   return (
-  <div className='App'>
+  <div className='App1'>
     <div className="addTask">
       <input onChange={handleChange}/>
       <button onClick={addTask}>Add Task</button>
