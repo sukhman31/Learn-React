@@ -6,6 +6,9 @@ function App(){
 
   useEffect(()=>{
     console.log('Component mounted');
+    return () =>{
+      console.log('Component unmounted');
+    }
   },[]);
 
   return (
