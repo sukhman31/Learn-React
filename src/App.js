@@ -1,43 +1,16 @@
 import './App.css';
-import { useState } from 'react';
-import Axios from 'axios';
+import { useState, useEffect } from 'react';
 
-function App(){ 
-  const [toDoList, setToDoList] = useState([]);
-  const [newTask, setNewTask] = useState("");
-  
-  const handleChange = (event) => {
-    setNewTask(event.target.value);
-  };
+function App(){
+  const [text, setText] = useState('');
 
-  const addTask = () => {
-    const task = {
-      id : toDoList.length===0 ? 1 : toDoList[toDoList.length-1].id+1,
-      taskName: newTask
-    }
-    setToDoList([...toDoList, task]);
-  }
+  useEffect(()=>{
+    console.log('Component mounted');
+  },[]);
 
-  const deleteTask = (id) => {
-    setToDoList(toDoList.filter((task)=>{
-      return task.id !== id;
-    }))
-  }
-  
   return (
   <div className='App'>
-    <div className="addTask">
-      <input onChange={handleChange}/>
-      <button onClick={addTask}>Add Task</button>
-    </div>
-    <div className="list">{toDoList.map((task)=>{
-      return (
-      <div>
-        <h1>{task.taskName}</h1>
-        <button onClick={() => deleteTask(task.id)}>X</button>
-      </div>
-      )
-    })}</div>
+    <h1>Hello</h1>
   </div>
   );
 }
