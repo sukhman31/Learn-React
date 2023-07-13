@@ -6,15 +6,16 @@ import { Home } from './pages/home';
 import { Contact } from './pages/contact';
 import { Profile } from './pages/profile';
 import { Navbar } from './pages/navbar';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export const AppContext = createContext();
 
 function App(){
   const [user, setUser] = useState('Sukhman');
-  
+  const client = new QueryClient();
   return (
     <div className='App'>
-      <AppContext.Provider value={{user,setUser}}>
+      <QueryClientProvider client={client}>
         <Router>
           <Navbar />
           <Routes>
@@ -24,7 +25,7 @@ function App(){
             <Route path='*' element={<h1>page not found</h1>}/>
           </Routes>
         </Router>
-      </AppContext.Provider>
+      </QueryClientProvider>
     </div>
   );
 }
