@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+Form{
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 500px;
+  margin-left: 50%;
+  transform: translate(-50%);
+}
+
+/* .text-input{
+  display: block;
+} */
